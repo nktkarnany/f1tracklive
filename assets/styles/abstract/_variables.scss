@@ -1,0 +1,25 @@
+:root {
+  // colors
+
+  // Grays
+  --white: #fff;
+  --gray-200: #f8f9fa;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --black: #000;
+
+  //Padding and margin
+  --base-margin: 0.75rem;
+  --base-font: 100%;
+
+  // Border
+  --border-color: var(--gray-700);
+
+  --base-duration: 600ms;
+  --base-ease: cubic-bezier(0.25, 0.46, 0.45, 0.84);
+}

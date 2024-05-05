@@ -1,0 +1,11 @@
+@font-face {
+  font-family: Franklin-Gothic;
+  src: url(../fonts/FranklinGothic-Book.ttf) format('truetype');
+  font-weight: 400;
+}
+
+// Defining abstract variables & styles
+@import 'abstract';
+
+// custom classes
+@import 'pages';

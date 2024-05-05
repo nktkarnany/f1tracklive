@@ -1,0 +1,53 @@
+{
+  "name": "f1tarcklive",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/image": "1.0.0-rc.1",
+    "animejs": "3.2.1",
+    "geojson2svg": "^2.0.1",
+    "sass": "^1.66.1"
+  },
+  "devDependencies": {
+    "@css-render/vue3-ssr": "^0.15.12",
+    "@nuxt/content": "2.8.1",
+    "@types/animejs": "3.1.7",
+    "@types/node": "^18.16.19",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "@vue/eslint-config-standard": "^8.0.1",
+    "@vueuse/core": "10.4.1",
+    "@vueuse/nuxt": "10.4.1",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "nuxt": "^3.6.3",
+    "prettier": "^3.0.2",
+    "typescript": "^5.2.2",
+    "vue": "^3.3.4"
+  },
+  "browserslist": [
+    ">0.3%",
+    "not ie 11",
+    "not dead",
+    "not op_mini all",
+    "last 3 version",
+    "Chrome >= 35",
+    "Firefox >= 38",
+    "Edge >= 10",
+    "Explorer >= 10",
+    "ie >= 10",
+    "iOS >= 8",
+    "Safari >= 8",
+    "Android 2.3",
+    "Android >= 4",
+    "Opera >= 12"
+  ]
+}

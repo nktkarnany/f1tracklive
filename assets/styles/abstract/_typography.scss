@@ -1,0 +1,34 @@
+body {
+  font-family: Franklin-Gothic, Helvetica, Arial, Sans-Serif;
+  font-weight: 400;
+  // color: var(--gray-400);
+}
+
+h1 {
+  font-size: calc(var(--base-font) * 2);
+}
+
+h2 {
+  font-weight: 600;
+  font-size: calc(var(--base-font) * 1.7411);
+}
+
+h3 {
+  font-size: calc(var(--base-font) * 1.5157);
+}
+
+h4 {
+  font-size: calc(var(--base-font) * 1.3195);
+}
+
+h5 {
+  font-size: calc(var(--base-font) * 1.1487);
+}
+
+p {
+  font-size: calc(var(--base-font) * 1);
+}
+
+footer {
+  font-size: calc(var(--base-font) * 0.8706);
+}
