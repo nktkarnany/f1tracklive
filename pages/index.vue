@@ -1,32 +1,45 @@
 <template>
-  <div class="svg-container">
-    <svg
-      viewBox="-50 -50 400 200"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      stroke="black"
-      stroke-width="1"
-      v-html="miamiSvg"
-    ></svg>
-  </div>
+  <div ref="track" class="svg-container"></div>
 </template>
 
 <script lang="ts" setup>
-import { GeoJSON2SVG } from "geojson2svg";
+import * as d3 from 'd3';
 
-const miamiSvg = ref();
+const track = ref();
 
 onMounted(async () => {
-  const queryTracks = await queryContent("tracks").findOne();
+  const queryTracks = await queryContent('tracks').findOne();
 
-  const miamiTrack = queryTracks.body[0];
+  console.log(queryTracks.body);
 
-  const converter = new GeoJSON2SVG({
-    viewportSize: { width: 200, height: 100 },
-    fitTo: "height",
-  });
+  const miamiTrack = queryTracks.body[6];
 
-  miamiSvg.value = converter.convert(miamiTrack)[0];
+  // Set up your SVG container with margins
+  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+  const width = 800 - margin.left - margin.right;
+  const height = 600 - margin.top - margin.bottom;
+  const svg = d3
+    .select(track.value)
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
+    .append('g')
+    .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+  // fitSize makes the output take up all the space inside the svg
+  const projection = d3.geoMercator().fitSize([width, height], miamiTrack);
+  const path = d3.geoPath().projection(projection);
+
+  // So that it still works if there are more features than just one
+  svg
+    .selectAll('path')
+    .data(miamiTrack.features)
+    .enter()
+    .append('path')
+    .attr('d', path)
+    .style('fill', 'none')
+    .style('stroke-width', '2')
+    .style('stroke', 'black');
 });
 </script>
 
