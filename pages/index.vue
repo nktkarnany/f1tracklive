@@ -1,58 +1,43 @@
 <template>
-  <div ref="track" class="svg-container"></div>
+  <div ref="racePage" class="race-page" @click="randomizeBg">
+    <h1 class="location">IMOLA</h1>
+    <race-track />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import * as d3 from 'd3';
+const racePage = ref();
 
-const track = ref();
-
-onMounted(async () => {
-  const queryTracks = await queryContent('tracks').findOne();
-
-  console.log(queryTracks.body);
-
-  const miamiTrack = queryTracks.body[6];
-
-  // Set up your SVG container with margins
-  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-  const width = 800 - margin.left - margin.right;
-  const height = 600 - margin.top - margin.bottom;
-  const svg = d3
-    .select(track.value)
-    .append('svg')
-    .attr('width', width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom)
-    .append('g')
-    .attr('transform', `translate(${margin.left}, ${margin.top})`);
-
-  // fitSize makes the output take up all the space inside the svg
-  const projection = d3.geoMercator().fitSize([width, height], miamiTrack);
-  const path = d3.geoPath().projection(projection);
-
-  // So that it still works if there are more features than just one
-  svg
-    .selectAll('path')
-    .data(miamiTrack.features)
-    .enter()
-    .append('path')
-    .attr('d', path)
-    .style('fill', 'none')
-    .style('stroke-width', '2')
-    .style('stroke', 'black');
-});
+// Methods
+function randomizeBg() {
+  const pastelColors = [
+    '#fbf8cc',
+    '#fde4cf',
+    '#ffcfd2',
+    '#f1c0e8',
+    '#cfbaf0',
+    '#a3c4f3',
+    '#90dbf4',
+    '#8eecf5',
+    '#98f5e1',
+    '#b9fbc0'
+  ];
+  racePage.value.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+}
 </script>
 
 <style lang="scss">
-.svg-container {
+.location {
+  user-select: none;
+  color: #343a40;
+}
+
+.race-page {
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-svg {
-  max-width: 75%;
 }
 </style>

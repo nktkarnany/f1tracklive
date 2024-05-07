@@ -1,7 +1,18 @@
 @font-face {
-  font-family: Franklin-Gothic;
-  src: url(../fonts/FranklinGothic-Book.ttf) format('truetype');
+  font-family: F1-Bold;
+  src: url(../fonts/Formula1-Bold.otf) format('opentype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: F1-Regular;
+  src: url(../fonts/Formula1-Regular.otf) format('opentype');
   font-weight: 400;
+}
+
+@font-face {
+  font-family: F1-Wide;
+  src: url(../fonts/Formula1-Wide.otf) format('opentype');
 }
 
 // Defining abstract variables & styles
