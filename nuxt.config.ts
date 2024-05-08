@@ -1,12 +1,26 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/content', '@nuxt/image', '@vueuse/nuxt'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/image',
+    '@vueuse/nuxt',
+    [
+      '@pinia/nuxt',
+      {
+        autoImports: ['defineStore', ['defineStore', 'definePiniaStore']]
+      }
+    ]
+  ],
 
   spaLoadingTemplate: false,
 
   ssr: false,
 
-  css: ['~/assets/styles/index.scss'],
+  srcDir: 'app/infrastructure/ui',
+
+  components: [{ path: 'components', pathPrefix: false }],
+
+  css: ['assets/styles/index.scss'],
 
   devtools: { enabled: false },
 

@@ -12,7 +12,9 @@
     "@nuxt/image": "1.0.0-rc.1",
     "animejs": "3.2.1",
     "d3": "7.9.0",
-    "sass": "^1.66.1"
+    "sass": "^1.66.1",
+    "@pinia/nuxt": "0.5.1",
+    "pinia": "2.1.7"
   },
   "devDependencies": {
     "@css-render/vue3-ssr": "^0.15.12",
