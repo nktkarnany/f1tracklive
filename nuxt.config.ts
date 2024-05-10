@@ -1,3 +1,5 @@
+import { resolve } from 'path';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -23,6 +25,11 @@ export default defineNuxtConfig({
   css: ['assets/styles/index.scss'],
 
   devtools: { enabled: false },
+
+  alias: {
+    '@domain': resolve(__dirname, './app/domain'),
+    '@infra': resolve(__dirname, './app/infrastructure')
+  },
 
   app: {
     head: {
