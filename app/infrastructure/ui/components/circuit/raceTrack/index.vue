@@ -13,9 +13,14 @@ onMounted(async () => {
   const currentTrack = queryTracks.body[6];
 
   // Set up your SVG container with margins
+  const mapAspectRatio = 16 / 9;
+  const widthCoveragePercentage = 80; // Cover 80% of window's width
+  const heightCoveragePercentage = 60; // Cover 60% of window's height
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
   const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-  const width = 800 - margin.left - margin.right;
-  const height = 600 - margin.top - margin.bottom;
+  const width = (windowWidth * widthCoveragePercentage) / 100 - margin.left - margin.right;
+  const height = (width / mapAspectRatio) * (100 / heightCoveragePercentage) - margin.top - margin.bottom;
   const svg = d3
     .select(track.value)
     .append('svg')
@@ -53,9 +58,5 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-svg {
-  max-width: 75%;
 }
 </style>
