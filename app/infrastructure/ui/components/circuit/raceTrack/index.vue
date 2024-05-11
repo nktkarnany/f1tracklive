@@ -7,6 +7,7 @@ import * as d3 from 'd3';
 
 // Importing usecases
 import { loadCircuitUseCase } from '@usecases/loadCircuit';
+import { loadDriversUseCase } from '@usecases/loadDrivers';
 
 // Importing Adapters
 import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
@@ -18,6 +19,7 @@ const { loadingCircuit, circuit } = toRefs(circuitStoreAdapter());
 // Lifecycle: Start
 onMounted(async () => {
   await loadCircuitUseCase('Miami', 2024);
+  await loadDriversUseCase('latest');
 });
 
 // Watch

@@ -9,11 +9,11 @@ export async function toGetCurrentCircuitResponse(res: MeetingsRawResponse): Pro
   const currentTrack = allTracks.find((track) => track.features[0].properties.Location == res.location);
 
   const circuit: GetCurrentCircuitApiRes = {
-    key: res.circuit_key,
-    geoJSON: currentTrack ?? null,
+    circuit_key: res.circuit_key,
     location: res.location,
     country_name: res.country_name,
-    meeting_name: res.meeting_name
+    meeting_name: res.meeting_name,
+    geoJSON: currentTrack ?? null
   };
 
   return circuit;

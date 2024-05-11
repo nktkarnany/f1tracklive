@@ -1,7 +1,6 @@
 import type { Driver } from './Driver';
 
 export type Car = {
-  id: number;
   driver: Driver;
   drs: number;
   gear: number;
@@ -15,5 +14,4 @@ export type Car = {
     y: number;
     z: number;
   };
-  active: boolean;
 };

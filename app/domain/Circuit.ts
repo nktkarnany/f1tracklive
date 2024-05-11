@@ -30,9 +30,9 @@ export type FeatureCollection = {
 };
 
 export type Circuit = {
-  key: number;
-  geoJSON: FeatureCollection | null;
+  circuit_key: number;
   location: string;
   country_name: string;
   meeting_name: string;
+  geoJSON: FeatureCollection | null;
 };
