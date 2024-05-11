@@ -22,7 +22,7 @@ type Feature = {
   geometry: Geometry;
 };
 
-type FeatureCollection = {
+export type FeatureCollection = {
   type: string;
   name: string;
   bbox: [number, number, number, number];
@@ -30,8 +30,9 @@ type FeatureCollection = {
 };
 
 export type Circuit = {
-  id: number;
-  geoJSON: FeatureCollection;
-  country: string;
+  key: number;
+  geoJSON: FeatureCollection | null;
   location: string;
+  country_name: string;
+  meeting_name: string;
 };

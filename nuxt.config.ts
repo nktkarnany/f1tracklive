@@ -28,7 +28,8 @@ export default defineNuxtConfig({
 
   alias: {
     '@domain': resolve(__dirname, './app/domain'),
-    '@infra': resolve(__dirname, './app/infrastructure')
+    '@infra': resolve(__dirname, './app/infrastructure'),
+    '@usecases': resolve(__dirname, './app/usecases')
   },
 
   app: {
