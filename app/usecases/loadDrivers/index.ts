@@ -2,7 +2,7 @@
 import { apiAdapter } from '@infra/adapters/api';
 import { driverStoreAdapter } from '@infra/adapters/store/driver';
 
-export async function loadDriversUseCase(session_key?: number | string, meeting_key?: number | string): Promise<void> {
+export async function loadDriversUseCase(meeting_key?: number | string, session_key?: number | string): Promise<void> {
   const { getCurrentDrivers } = apiAdapter();
   const { setLoadingDrivers, refreshDrivers } = driverStoreAdapter();
 

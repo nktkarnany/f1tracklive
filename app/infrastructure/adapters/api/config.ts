@@ -1,7 +1,8 @@
 /* eslint-disable indent */
 export enum API_ROUTES {
   GET_CURRENT_DRIVERS,
-  GET_CURRENT_CIRCUIT
+  GET_CURRENT_CIRCUIT,
+  GET_CURRENT_RACE
 }
 
 export function getApiRoute(type: API_ROUTES, params?: any): string {
@@ -18,5 +19,8 @@ export function getApiRoute(type: API_ROUTES, params?: any): string {
       if (params.location) searchParams.append('location', params.location);
       if (params.year) searchParams.append('year', params.year);
       return `${BASE_URL}/meetings?${searchParams.toString()}`;
+
+    case API_ROUTES.GET_CURRENT_RACE:
+      return `${BASE_URL}/sessions?session_key=latest`;
   }
 }

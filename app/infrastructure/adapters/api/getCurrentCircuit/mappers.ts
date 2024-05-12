@@ -12,6 +12,7 @@ export async function toGetCurrentCircuitResponse(res: MeetingsRawResponse): Pro
     circuit_key: res.circuit_key,
     location: res.location,
     country_name: res.country_name,
+    meeting_key: res.meeting_key,
     meeting_name: res.meeting_name,
     geoJSON: currentTrack ?? null
   };

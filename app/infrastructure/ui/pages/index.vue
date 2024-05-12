@@ -1,11 +1,16 @@
 <template>
   <div ref="racePage" class="race-page" @click="randomizeBg">
-    <h1 class="location">IMOLA</h1>
+    <h1 class="location">{{ circuit?.location }}</h1>
     <race-track />
   </div>
 </template>
 
 <script lang="ts" setup>
+// Importing Adapters
+import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
+
+const { circuit } = toRefs(circuitStoreAdapter());
+
 const racePage = ref();
 
 // Methods

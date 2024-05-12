@@ -5,9 +5,13 @@
 <script lang="ts" setup>
 import * as d3 from 'd3';
 
+// Importing Entities
+import type { FeatureCollection } from '@domain/Circuit';
+
 // Importing usecases
 import { loadCircuitUseCase } from '@usecases/loadCircuit';
 import { loadDriversUseCase } from '@usecases/loadDrivers';
+import { loadRaceUseCase } from '@usecases/loadRace';
 
 // Importing Adapters
 import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
@@ -18,54 +22,54 @@ const { loadingCircuit, circuit } = toRefs(circuitStoreAdapter());
 
 // Lifecycle: Start
 onMounted(async () => {
+  await loadRaceUseCase();
+
   await loadCircuitUseCase('Miami', 2024);
-  await loadDriversUseCase('latest');
 });
 
 // Watch
 watch(
   () => circuit.value,
-  () => {
-    loadTrack();
+  async () => {
+    const currentTrack = circuit.value?.geoJSON;
+    if (currentTrack) loadTrack(currentTrack);
+
+    if (circuit.value?.meeting_key) await loadDriversUseCase(circuit.value?.meeting_key, 'latest');
   }
 );
 
 // Methods
-function loadTrack() {
-  const currentTrack = circuit.value?.geoJSON;
+function loadTrack(currentTrack: FeatureCollection) {
+  // Set up your SVG container with margins
+  const widthCoveragePercentage = 60;
+  const heightCoveragePercentage = 40;
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+  const width = (windowWidth * widthCoveragePercentage) / 100 - margin.left - margin.right;
+  const height = (windowHeight * heightCoveragePercentage) / 100 - margin.top - margin.bottom;
+  const svg = d3
+    .select(track.value)
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
+    .append('g')
+    .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-  if (currentTrack) {
-    // Set up your SVG container with margins
-    const widthCoveragePercentage = 60;
-    const heightCoveragePercentage = 40;
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-    const width = (windowWidth * widthCoveragePercentage) / 100 - margin.left - margin.right;
-    const height = (windowHeight * heightCoveragePercentage) / 100 - margin.top - margin.bottom;
-    const svg = d3
-      .select(track.value)
-      .append('svg')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-      .append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+  // fitSize makes the output take up all the space inside the svg
+  const projection = d3.geoMercator().fitSize([width, height], currentTrack as d3.GeoGeometryObjects);
+  const path = d3.geoPath().projection(projection);
 
-    // fitSize makes the output take up all the space inside the svg
-    const projection = d3.geoMercator().fitSize([width, height], currentTrack as d3.GeoGeometryObjects);
-    const path = d3.geoPath().projection(projection);
-
-    // So that it still works if there are more features than just one
-    svg
-      .selectAll('path')
-      .data(currentTrack.features)
-      .enter()
-      .append('path')
-      .attr('d', path)
-      .style('fill', 'none')
-      .style('stroke-width', '2')
-      .style('stroke', '#343a40');
-  }
+  // So that it still works if there are more features than just one
+  svg
+    .selectAll('path')
+    .data(currentTrack.features)
+    .enter()
+    .append('path')
+    .attr('d', path)
+    .style('fill', 'none')
+    .style('stroke-width', '2')
+    .style('stroke', '#343a40');
 }
 </script>
 
