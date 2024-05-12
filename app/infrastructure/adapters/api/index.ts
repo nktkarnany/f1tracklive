@@ -1,13 +1,13 @@
 import type { ApiAdapter } from './types';
 
+import { getCurrentRaceCall } from './getCurrentRace';
 import { getCurrentCircuitCall } from './getCurrentCircuit';
 import { getCurrentDriversCall } from './getCurrentDrivers';
-import { getCurrentRaceCall } from './getCurrentRace';
 
 export function apiAdapter(): ApiAdapter {
   return {
+    getCurrentRace: getCurrentRaceCall,
     getCurrentCircuit: getCurrentCircuitCall,
-    getCurrentDrivers: getCurrentDriversCall,
-    getCurrentRace: getCurrentRaceCall
+    getCurrentDrivers: getCurrentDriversCall
   };
 }

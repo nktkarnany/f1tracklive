@@ -1,8 +1,7 @@
 import type { Circuit } from '@domain/Circuit';
 
 export type GetCurrentCircuitApiReq = {
-  location: string;
-  year?: number;
+  circuit_key: number;
 };
 
 export type MeetingsRawResponse = {

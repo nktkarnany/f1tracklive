@@ -6,6 +6,6 @@ export type DriverStoreState = {
 };
 
 export type DriverStoreAction = {
-  setLoadingDrivers(loading: boolean): void;
-  refreshDrivers(drivers: Driver[]): void;
+  setLoadingDrivers(l: boolean): void;
+  refreshDrivers(d: Driver[]): void;
 };

@@ -8,10 +8,23 @@
 <script lang="ts" setup>
 // Importing Adapters
 import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
+import { raceStoreAdapter } from '@infra/adapters/store/race';
+
+// Importing Uƒsecases
+import { loadRaceUseCase } from '@usecases/loadRace';
+import { loadCircuitUseCase } from '@usecases/loadCircuit';
 
 const { circuit } = toRefs(circuitStoreAdapter());
+const { race } = toRefs(raceStoreAdapter());
 
 const racePage = ref();
+
+// Lifecycle: start
+onMounted(async () => {
+  await loadRaceUseCase();
+
+  if (race.value?.circuit_key) await loadCircuitUseCase(race.value.circuit_key);
+});
 
 // Methods
 function randomizeBg() {

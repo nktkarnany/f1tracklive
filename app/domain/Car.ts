@@ -1,7 +1,5 @@
-import type { Driver } from './Driver';
-
 export type Car = {
-  driver: Driver;
+  driver_number: number;
   drs: number;
   gear: number;
   speed: number;

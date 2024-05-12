@@ -7,7 +7,7 @@ import type { Circuit } from '@domain/Circuit';
 type StoreAdapter = {
   loadingCircuit: boolean;
   circuit: Circuit | null;
-  setLoadingCircuit(loading: boolean): void;
+  setLoadingCircuit(l: boolean): void;
   updateCircuit(c: Circuit): void;
 };
 

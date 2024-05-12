@@ -6,6 +6,6 @@ export type RaceStoreState = {
 };
 
 export type RaceStoreActions = {
-  setLoadingRace(loading: boolean): void;
-  updateRace(race: Race): void;
+  setLoadingRace(l: boolean): void;
+  updateRace(r: Race): void;
 };

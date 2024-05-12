@@ -1,8 +1,7 @@
 import type { Driver } from '@domain/Driver';
 
 export type GetCurrentDriversApiReq = {
-  meeting_key?: number | string;
-  session_key?: number | string;
+  session_key: number;
 };
 
 export type DriversRawResponse = [

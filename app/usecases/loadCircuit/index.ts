@@ -2,13 +2,13 @@
 import { apiAdapter } from '@infra/adapters/api';
 import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
 
-export async function loadCircuitUseCase(location: string, year?: number): Promise<void> {
+export async function loadCircuitUseCase(circuit_key: number): Promise<void> {
   const { getCurrentCircuit } = apiAdapter();
   const { setLoadingCircuit, updateCircuit } = circuitStoreAdapter();
 
   setLoadingCircuit(true);
 
-  return getCurrentCircuit({ location, year })
+  return getCurrentCircuit({ circuit_key })
     .then((circuit) => {
       updateCircuit(circuit);
     })

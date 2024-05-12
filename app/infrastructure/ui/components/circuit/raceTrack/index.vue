@@ -9,23 +9,17 @@ import * as d3 from 'd3';
 import type { FeatureCollection } from '@domain/Circuit';
 
 // Importing usecases
-import { loadCircuitUseCase } from '@usecases/loadCircuit';
 import { loadDriversUseCase } from '@usecases/loadDrivers';
-import { loadRaceUseCase } from '@usecases/loadRace';
 
 // Importing Adapters
 import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
 
 // Data
 const track = ref();
-const { loadingCircuit, circuit } = toRefs(circuitStoreAdapter());
+const { circuit } = toRefs(circuitStoreAdapter());
 
 // Lifecycle: Start
-onMounted(async () => {
-  await loadRaceUseCase();
-
-  await loadCircuitUseCase('Miami', 2024);
-});
+onMounted(async () => {});
 
 // Watch
 watch(
@@ -34,7 +28,7 @@ watch(
     const currentTrack = circuit.value?.geoJSON;
     if (currentTrack) loadTrack(currentTrack);
 
-    if (circuit.value?.meeting_key) await loadDriversUseCase(circuit.value?.meeting_key, 'latest');
+    // if (circuit.value?.meeting_key) await loadDriversUseCase(circuit.value?.);
   }
 );
 

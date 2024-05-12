@@ -2,13 +2,13 @@
 import { apiAdapter } from '@infra/adapters/api';
 import { driverStoreAdapter } from '@infra/adapters/store/driver';
 
-export async function loadDriversUseCase(meeting_key?: number | string, session_key?: number | string): Promise<void> {
+export async function loadDriversUseCase(session_key: number): Promise<void> {
   const { getCurrentDrivers } = apiAdapter();
   const { setLoadingDrivers, refreshDrivers } = driverStoreAdapter();
 
   setLoadingDrivers(true);
 
-  return getCurrentDrivers({ meeting_key, session_key })
+  return getCurrentDrivers({ session_key })
     .then((drivers) => {
       refreshDrivers(drivers);
     })

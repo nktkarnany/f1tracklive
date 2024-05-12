@@ -6,6 +6,6 @@ export type CircuitStoreState = {
 };
 
 export type CircuitStoreActions = {
-  setLoadingCircuit(loading: boolean): void;
-  updateCircuit(circuit: Circuit): void;
+  setLoadingCircuit(l: boolean): void;
+  updateCircuit(c: Circuit): void;
 };
