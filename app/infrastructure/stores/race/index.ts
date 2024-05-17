@@ -15,9 +15,7 @@ export const useRaceStore = defineStore<string, Store>('RaceStore', (): Store =>
 
   // Getters
   const isLive = computed(() =>
-    race.value?.date_start
-      ? isLiveWithOffset(race.value?.date_start, race.value?.gmt_offset, race.value.date_end)
-      : false
+    race.value ? isBetweenStartAndEnd(race.value.date_start, race.value.date_end) : false
   );
 
   // Actions
@@ -29,6 +27,10 @@ export const useRaceStore = defineStore<string, Store>('RaceStore', (): Store =>
     race.value = r;
   }
 
+  function updateCars(c: Car[]) {
+    cars.value = c;
+  }
+
   return {
     // State
     loadingRace,
@@ -38,6 +40,7 @@ export const useRaceStore = defineStore<string, Store>('RaceStore', (): Store =>
     isLive,
     // Actions
     setLoadingRace,
-    updateRace
+    updateRace,
+    updateCars
   };
 });

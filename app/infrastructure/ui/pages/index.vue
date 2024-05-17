@@ -2,6 +2,7 @@
   <div ref="racePage" class="race-page" @click="randomizeBg">
     <h1 class="location">{{ circuit?.location }}</h1>
     <race-track />
+    <button @click="getPositions">Get New Positions</button>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import { raceStoreAdapter } from '@infra/adapters/store/race';
 import { loadRaceUseCase } from '@usecases/loadRace';
 import { loadCircuitUseCase } from '@usecases/loadCircuit';
 import { loadDriversUseCase } from '@usecases/loadDrivers';
+import { loadPositionsUseCase } from '@usecases/loadPositions';
 
 const { circuit } = toRefs(circuitStoreAdapter());
 const { race } = toRefs(raceStoreAdapter());
@@ -43,6 +45,10 @@ function randomizeBg() {
     '#b9fbc0'
   ];
   racePage.value.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+}
+
+async function getPositions() {
+  if (race.value?.session_key) await loadPositionsUseCase(race.value.session_key);
 }
 </script>
 

@@ -12,6 +12,7 @@ type StoreAdapter = {
   isLive: boolean;
   setLoadingRace(l: boolean): void;
   updateRace(race: Race): void;
+  updateCars(cars: Car[]): void;
 };
 
 export function raceStoreAdapter(): StoreAdapter {

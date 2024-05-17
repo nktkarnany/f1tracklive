@@ -2,7 +2,8 @@
 export enum API_ROUTES {
   GET_CURRENT_RACE,
   GET_CURRENT_CIRCUIT,
-  GET_CURRENT_DRIVERS
+  GET_CURRENT_DRIVERS,
+  GET_LATEST_POSITIONS
 }
 
 export function getApiRoute(type: API_ROUTES, params?: any): string {
@@ -20,5 +21,9 @@ export function getApiRoute(type: API_ROUTES, params?: any): string {
     case API_ROUTES.GET_CURRENT_DRIVERS:
       if (params.session_key) searchParams.append('session_key', params.session_key);
       return `${BASE_URL}/drivers?${searchParams.toString()}`;
+
+    case API_ROUTES.GET_LATEST_POSITIONS:
+      if (params.session_key) searchParams.append('session_key', params.session_key);
+      return `${BASE_URL}/position?${searchParams.toString()}`;
   }
 }
