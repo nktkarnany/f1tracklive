@@ -8,9 +8,6 @@ import * as d3 from 'd3';
 // Importing Entities
 import type { FeatureCollection } from '@domain/Circuit';
 
-// Importing usecases
-import { loadDriversUseCase } from '@usecases/loadDrivers';
-
 // Importing Adapters
 import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
 
@@ -27,8 +24,6 @@ watch(
   async () => {
     const currentTrack = circuit.value?.geoJSON;
     if (currentTrack) loadTrack(currentTrack);
-
-    // if (circuit.value?.meeting_key) await loadDriversUseCase(circuit.value?.);
   }
 );
 

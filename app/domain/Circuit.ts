@@ -33,7 +33,6 @@ export type Circuit = {
   circuit_key: number;
   location: string;
   country_name: string;
-  meeting_key: number;
   meeting_name: string;
   geoJSON: FeatureCollection | null;
 };

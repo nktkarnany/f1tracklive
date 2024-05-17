@@ -13,6 +13,7 @@ import { raceStoreAdapter } from '@infra/adapters/store/race';
 // Importing Uƒsecases
 import { loadRaceUseCase } from '@usecases/loadRace';
 import { loadCircuitUseCase } from '@usecases/loadCircuit';
+import { loadDriversUseCase } from '@usecases/loadDrivers';
 
 const { circuit } = toRefs(circuitStoreAdapter());
 const { race } = toRefs(raceStoreAdapter());
@@ -24,6 +25,7 @@ onMounted(async () => {
   await loadRaceUseCase();
 
   if (race.value?.circuit_key) await loadCircuitUseCase(race.value.circuit_key);
+  if (race.value?.session_key) await loadDriversUseCase(race.value.session_key);
 });
 
 // Methods
