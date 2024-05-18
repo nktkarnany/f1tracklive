@@ -1,26 +1,29 @@
 <template>
-  <div ref="racePage" class="race-page" @click="randomizeBg">
-    <h1 class="location">{{ circuit?.location }}</h1>
-    <race-track />
-    <button @click="getPositions">Get New Positions</button>
+  <div ref="page" class="page" @click="randomizeBg">
+    <div class="page-sidebar">
+      <driver-standings />
+    </div>
+    <div class="page-main">
+      <race-title />
+      <div class="race-track">
+        <race-track />
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 // Importing Adapters
-import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
 import { raceStoreAdapter } from '@infra/adapters/store/race';
 
 // Importing Usecases
 import { loadRaceUseCase } from '@usecases/loadRace';
 import { loadCircuitUseCase } from '@usecases/loadCircuit';
 import { loadDriversUseCase } from '@usecases/loadDrivers';
-import { loadPositionsUseCase } from '@usecases/loadPositions';
 
-const { circuit } = toRefs(circuitStoreAdapter());
 const { race } = toRefs(raceStoreAdapter());
 
-const racePage = ref();
+const page = ref();
 
 // Lifecycle: start
 onMounted(async () => {
@@ -44,26 +47,32 @@ function randomizeBg() {
     '#98f5e1',
     '#b9fbc0'
   ];
-  racePage.value.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
-}
-
-async function getPositions() {
-  if (race.value?.session_key) await loadPositionsUseCase(race.value.session_key);
+  page.value.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
 }
 </script>
 
 <style lang="scss">
-.location {
-  user-select: none;
-  color: #343a40;
-}
-
-.race-page {
+.page {
   width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+  &-sidebar {
+    flex: 1;
+  }
+
+  &-main {
+    flex: 3;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .race-track {
+      margin: auto;
+    }
+  }
 }
 </style>

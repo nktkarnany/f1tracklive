@@ -27,8 +27,8 @@ watch(
 // Methods
 function loadTrack(currentTrack: FeatureCollection) {
   // Set up your SVG container with margins
-  const widthCoveragePercentage = 60;
-  const heightCoveragePercentage = 40;
+  const widthCoveragePercentage = 50;
+  const heightCoveragePercentage = 30;
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
   const margin = { top: 20, right: 20, bottom: 20, left: 20 };
