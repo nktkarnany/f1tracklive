@@ -11,7 +11,7 @@
 import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
 import { raceStoreAdapter } from '@infra/adapters/store/race';
 
-// Importing Uƒsecases
+// Importing Usecases
 import { loadRaceUseCase } from '@usecases/loadRace';
 import { loadCircuitUseCase } from '@usecases/loadCircuit';
 import { loadDriversUseCase } from '@usecases/loadDrivers';

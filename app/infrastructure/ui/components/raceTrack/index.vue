@@ -15,9 +15,6 @@ import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
 const track = ref();
 const { circuit } = toRefs(circuitStoreAdapter());
 
-// Lifecycle: Start
-onMounted(async () => {});
-
 // Watch
 watch(
   () => circuit.value,
@@ -60,12 +57,10 @@ function loadTrack(currentTrack: FeatureCollection) {
     .style('stroke-width', '2')
     .style('stroke', '#343a40');
 }
-</script>
 
-<script lang="ts">
-export default {
+defineOptions({
   name: 'RaceTrack'
-};
+});
 </script>
 
 <style lang="scss">
