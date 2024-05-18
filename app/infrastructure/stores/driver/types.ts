@@ -8,4 +8,5 @@ export type DriverStoreState = {
 export type DriverStoreAction = {
   setLoadingDrivers(l: boolean): void;
   refreshDrivers(d: Driver[]): void;
+  updatePositions(drivers: number[]): void;
 };

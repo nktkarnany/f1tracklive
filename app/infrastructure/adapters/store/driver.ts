@@ -9,6 +9,7 @@ type StoreAdapter = {
   drivers: Driver[];
   setLoadingDrivers(l: boolean): void;
   refreshDrivers(d: Driver[]): void;
+  updatePositions(drivers: number[]): void;
 };
 
 export function driverStoreAdapter(): StoreAdapter {
