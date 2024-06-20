@@ -13,3 +13,7 @@ A clean architecture approach on the FE. Using Nuxt 3 infrastructure, Pinia Stor
 ## Demo
 
 Here is the link to the deployment of this project on Netlify. (F1TrackLive)[https://f1tracklive.netlify.app/]
+
+## Tentative Expected Output (Still Work in progress)
+
+![F1 Track Live](https://github.com/nktkarnany/f1tracklive/assets/9823404/23e84f63-4016-41d4-9db5-bc17e21b7ab8)
