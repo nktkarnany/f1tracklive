@@ -14,6 +14,6 @@ A domain driven approach on the FE. Using Nuxt 3 infrastructure, Pinia Store and
 
 The project is deployed on Netlify. [F1TrackLive](https://f1tracklive.netlify.app/)
 
-## Tentative Expected Output (Still Work in progress)
+Expected Output (Work in progress)
 
 ![F1 Track Live](https://github.com/nktkarnany/f1tracklive/assets/9823404/23e84f63-4016-41d4-9db5-bc17e21b7ab8)
