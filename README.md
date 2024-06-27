@@ -8,7 +8,7 @@ A clean architecture approach on the FE. Using Nuxt 3 infrastructure, Pinia Stor
 
 ## Wireframe
 
-![image](https://github.com/nktkarnany/f1tracklive/assets/9823404/3d078f3d-4b89-4ca5-a957-9f79361e32ef)
+![image](https://github.com/nktkarnany/f1tracklive/assets/9823404/5b88262a-a144-4a16-a8a5-4989e2d2bd8a)
 
 ## Demo
 
