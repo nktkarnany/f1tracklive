@@ -1,6 +1,6 @@
 # Summary
 
-This is an attempt to render F1 race track by fetching the latest race data from [OpenF1 Api](https://openf1.org/) (Open Source Project) and the track is rendered using GeoJSON track data from this repo [F1 Circuits](https://github.com/bacinger/f1-circuits).
+This is an attempt to render F1 race track by fetching the latest race data from [OpenF1 Api](https://openf1.org/) (Open Source Project) and the track is rendered using GeoJSON track data from this repo [F1 Circuits](https://github.com/bacinger/f1-circuits)
 
 ## Architecture Overview
 
@@ -12,7 +12,7 @@ A domain driven approach on the FE. Using Nuxt 3 infrastructure, Pinia Store and
 
 ## Demo
 
-The project is deployed on Netlify. [F1TrackLive](https://f1tracklive.netlify.app/)
+The project is deployed on Netlify here - [F1TrackLive](https://f1tracklive.netlify.app/)
 
 Expected Output (Work in progress)
 
