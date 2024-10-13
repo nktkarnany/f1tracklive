@@ -1,5 +1,5 @@
 <template>
-  <h1 class="race-title">{{ circuit?.location }}</h1>
+  <h1>{{ circuit?.location }}</h1>
 </template>
 
 <script lang="ts" setup>

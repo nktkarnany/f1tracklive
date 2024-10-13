@@ -1,10 +1,12 @@
 <template>
   <div ref="page" class="page" @click="randomizeBg">
     <div class="page-sidebar">
-      <driver-standings />
+      <!-- <driver-standings /> -->
     </div>
     <div class="page-main">
-      <race-title />
+      <div class="race-title">
+        <race-title />
+      </div>
       <div class="race-track">
         <race-track />
       </div>
@@ -70,8 +72,16 @@ function randomizeBg() {
     align-items: center;
     height: 100%;
 
+    .race-title {
+      width: 100%;
+      height: 3rem;
+      text-align: center;
+      padding-top: 1rem;
+    }
+
     .race-track {
-      margin: auto;
+      width: 100%;
+      height: calc(100% - 3rem);
     }
   }
 }
