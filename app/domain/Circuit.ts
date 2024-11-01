@@ -23,7 +23,16 @@ type Feature = {
 };
 
 export type FeatureCollection = {
-  type: string;
+  type:
+    | 'Point'
+    | 'MultiPoint'
+    | 'LineString'
+    | 'MultiLineString'
+    | 'Polygon'
+    | 'MultiPolygon'
+    | 'GeometryCollection'
+    | 'Feature'
+    | 'FeatureCollection';
   name: string;
   bbox: [number, number, number, number];
   features: Feature[];

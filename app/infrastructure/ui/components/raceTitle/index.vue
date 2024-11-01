@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ circuit?.location }}</h1>
+  <h1 class="title">{{ circuit?.location }}</h1>
 </template>
 
 <script lang="ts" setup>
@@ -11,3 +11,5 @@ defineOptions({
   name: 'RaceTitle'
 });
 </script>
+
+<style lang="sass" scoped src="./styles.scss" />

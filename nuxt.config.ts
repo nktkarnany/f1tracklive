@@ -14,6 +14,10 @@ export default defineNuxtConfig({
     ]
   ],
 
+  // mapbox: {
+  //   accessToken: 'pk.eyJ1Ijoibmt0a2FybmFueSIsImEiOiJjbTJ5bHl5MnAwMjF6Mm1zOGpidXFlYTFoIn0.Xa2nwsPqC98sFQ9fTils4Q'
+  // },
+
   spaLoadingTemplate: false,
 
   ssr: false,

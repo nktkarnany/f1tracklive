@@ -1,17 +1,15 @@
 <template>
-  <div ref="track" class="svg-container"></div>
+  <div ref="track" class="map-container"></div>
 </template>
 
 <script lang="ts" setup>
-import * as d3 from 'd3';
-
-// Importing Entities
-import type { FeatureCollection } from '@domain/Circuit';
+import mapboxgl from 'mapbox-gl';
 
 // Importing Adapters
 import { circuitStoreAdapter } from '@infra/adapters/store/circuit';
 
 // Data
+const map = ref();
 const track = ref();
 const { circuit } = toRefs(circuitStoreAdapter());
 
@@ -19,44 +17,40 @@ const { circuit } = toRefs(circuitStoreAdapter());
 watch(
   () => circuit.value,
   async () => {
-    const currentTrack = circuit.value?.geoJSON;
-    if (currentTrack) loadTrack(currentTrack);
+    mapboxgl.accessToken =
+      'pk.eyJ1Ijoibmt0a2FybmFueSIsImEiOiJjbTJ5bHl5MnAwMjF6Mm1zOGpidXFlYTFoIn0.Xa2nwsPqC98sFQ9fTils4Q';
+
+    map.value = new mapboxgl.Map({
+      container: track.value,
+      style: 'mapbox://styles/mapbox/light-v11', // Mapbox style
+      center: [-99.092, 19.402], // Map center coordinates
+      zoom: 15
+    });
+
+    map.value.on('load', () => {
+      // Add GeoJSON source to the map
+      map.value.addSource('circuit-track', {
+        type: 'geojson',
+        data: circuit.value?.geoJSON
+      });
+
+      // Add a line layer to display the circuit track
+      map.value.addLayer({
+        id: 'circuit-track-line',
+        type: 'line',
+        source: 'circuit-track',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        paint: {
+          'line-color': '#FF1E00', // Track line color
+          'line-width': 3 // Track line width
+        }
+      });
+    });
   }
 );
-
-// Methods
-function loadTrack(currentTrack: FeatureCollection) {
-  // Set up your SVG container with margins
-  const widthCoveragePercentage = 50;
-  const heightCoveragePercentage = 30;
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-  const width = (windowWidth * widthCoveragePercentage) / 100 - margin.left - margin.right;
-  const height = (windowHeight * heightCoveragePercentage) / 100 - margin.top - margin.bottom;
-  const svg = d3
-    .select(track.value)
-    .append('svg')
-    .attr('width', width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom)
-    .append('g')
-    .attr('transform', `translate(${margin.left}, ${margin.top})`);
-
-  // fitSize makes the output take up all the space inside the svg
-  const projection = d3.geoMercator().fitSize([width, height], currentTrack as d3.GeoGeometryObjects);
-  const path = d3.geoPath().projection(projection);
-
-  // So that it still works if there are more features than just one
-  svg
-    .selectAll('path')
-    .data(currentTrack.features)
-    .enter()
-    .append('path')
-    .attr('d', path)
-    .style('fill', 'none')
-    .style('stroke-width', '2')
-    .style('stroke', '#343a40');
-}
 
 defineOptions({
   name: 'RaceTrack'
@@ -64,11 +58,8 @@ defineOptions({
 </script>
 
 <style lang="scss">
-.svg-container {
+.map-container {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>
