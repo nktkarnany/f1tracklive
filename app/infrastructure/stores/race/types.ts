@@ -15,4 +15,5 @@ export type RaceStoreActions = {
   setLoadingRace(l: boolean): void;
   updateRace(r: Race): void;
   updateCars(cars: Car[]): void;
+  updateCarLocation(car: Car): void;
 };

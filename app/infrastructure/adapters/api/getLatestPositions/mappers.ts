@@ -15,5 +15,5 @@ export function toGetLatestPositionsResponse(data: PositionsRawResponseObj[]): G
   // Convert the object to an array, sort by position, and return driver_number and position
   return Object.values(latestPositions)
     .sort((a, b) => a.position - b.position)
-    .map(({ driver_number, position }) => ({ driver_number, position }));
+    .map(({ driver_number, position }) => ({ driver_number, position, location: null }));
 }

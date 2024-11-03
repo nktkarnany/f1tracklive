@@ -31,6 +31,11 @@ export const useRaceStore = defineStore<string, Store>('RaceStore', (): Store =>
     cars.value = c;
   }
 
+  function updateCarLocation(c: Car) {
+    const i = cars.value.findIndex((car) => car.driver_number == c.driver_number);
+    cars.value[i] = c;
+  }
+
   return {
     // State
     loadingRace,
@@ -41,6 +46,7 @@ export const useRaceStore = defineStore<string, Store>('RaceStore', (): Store =>
     // Actions
     setLoadingRace,
     updateRace,
-    updateCars
+    updateCars,
+    updateCarLocation
   };
 });

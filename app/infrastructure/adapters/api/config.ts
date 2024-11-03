@@ -3,7 +3,8 @@ export enum API_ROUTES {
   GET_CURRENT_RACE,
   GET_CURRENT_CIRCUIT,
   GET_CURRENT_DRIVERS,
-  GET_LATEST_POSITIONS
+  GET_CURRENT_POSITIONS,
+  GET_CURRENT_LOCATION
 }
 
 export function getApiRoute(type: API_ROUTES, params?: any): string {
@@ -22,8 +23,13 @@ export function getApiRoute(type: API_ROUTES, params?: any): string {
       if (params.session_key) searchParams.append('session_key', params.session_key);
       return `${BASE_URL}/drivers?${searchParams.toString()}`;
 
-    case API_ROUTES.GET_LATEST_POSITIONS:
+    case API_ROUTES.GET_CURRENT_POSITIONS:
       if (params.session_key) searchParams.append('session_key', params.session_key);
       return `${BASE_URL}/position?${searchParams.toString()}`;
+
+    case API_ROUTES.GET_CURRENT_LOCATION:
+      if (params.session_key) searchParams.append('session_key', params.session_key);
+      if (params.driver_number) searchParams.append('driver_number', params.driver_number);
+      return `${BASE_URL}/location?${searchParams.toString()}`;
   }
 }

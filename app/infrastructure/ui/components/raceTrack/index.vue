@@ -30,7 +30,7 @@ watch(
         zoom: 10 // Initial zoom level
       });
 
-      map.value.on('load', () => {
+      map.value.on('load', async () => {
         if (circuit.value) {
           // Add GeoJSON source to the map
           map.value.addSource('circuit-track', {

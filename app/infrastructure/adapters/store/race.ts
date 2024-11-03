@@ -13,6 +13,7 @@ type StoreAdapter = {
   setLoadingRace(l: boolean): void;
   updateRace(race: Race): void;
   updateCars(cars: Car[]): void;
+  updateCarLocation(car: Car): void;
 };
 
 export function raceStoreAdapter(): StoreAdapter {
